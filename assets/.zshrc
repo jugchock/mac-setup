@@ -1,9 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/Library/Android/sdk/platform-tools:$HOME/sdk/flutter/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/cchock/.oh-my-zsh"
+export ZSH="/Users/{user}/.oh-my-zsh"
 
 export LESS="-X"
 
@@ -112,9 +112,6 @@ autoload -Uz compinit && compinit
 # Aliases
 ###########
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias profile="cat ~/.zshrc|more"
 alias edit-profile="vim ~/.zshrc"
 alias load-profile="exec zsh"
@@ -136,8 +133,6 @@ alias count-html="( find -E . -regex '.*\.html$' -print0 | xargs -0 cat ) | sed 
 alias flatten="find . -mindepth 2 -type f -exec mv -t . -i '{}' +"
 alias ip="curl ifconfig.me"
 # alias aws="docker run --rm -it -v ~/.aws:/root/.aws amazon/aws-cli"
-#alias tunnel-home="ssh -L 8081:localhost:80 -L 8082:192.168.110.200:8080 -L 8083:192.168.110.201:7878 -L 8084:192.168.110.202:8989 -L 32400:192.168.110.203:32400 jug@home.chock.design"
-#alias proxy-home="ssh -D 8085 jug@home.chock.design"
 # alias base64="echo \"echo -n {input} | openssl base64 | pbcopy\""
 
 ###########

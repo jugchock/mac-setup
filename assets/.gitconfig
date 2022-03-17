@@ -1,0 +1,21 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = {name}
+	email = {email}
+[url "https://"]
+	insteadof = git://
+[credential]
+	helper = osxkeychain
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool "vimdiff"]
+	cmd = /usr/bin/vimdiff $LOCAL $REMOTE
+[push]
+	default = current
+[color]
+	ui = true
+[core]
+	pager = less -Xr
