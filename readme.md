@@ -1,5 +1,23 @@
 # Mac Setup
 
+## Add Umbrella Root Cert
+- Open an asset from raw.githubusercontent.com in Chrome
+  - Example: https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/extravagant-style.png
+- Click the red warning icon to the left of the URL bar
+- Click "Connection is not secure"
+- Click "Certificate is invalid"
+- Open finder and navigate to a folder you want to save this cert in
+- Select Cisco Umbrella Root CA
+- Drag cert icon in left of popup into finder
+- Close 
+- Open copied cert
+- Change dropdown to system and select "Add"
+- Select system in left-hand menu
+- Double-click "Cisco Umbrella Root CA" in list of system certs
+- Expand "Trust" in the popup
+- Select "Always trust" and close popup
+- Enter password
+
 ## Install Homebrew
 - Follow instructions from https://brew.sh/
 - `/bin/bash -c "$(curl -fksSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
@@ -93,6 +111,10 @@ Host gh_work
 Host *
   AddKeysToAgent yes
 ```
+
+> When cloning a repository from a work repo, use gh_work instead of github.com.
+
+> If you have already cloned the repository, configure it to use the alias by navigating to the project directory and run: `git remote set-url origin {alias}:{user}/{repo}`
 
 ## Install VS Code
 - `brew install --cask visual-studio-code`
