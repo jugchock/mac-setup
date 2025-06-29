@@ -26,14 +26,14 @@
 - Follow instructions Homebrew prints to the console to add Homebrew to system path
 
 ## Install Programmer's Dvorak
-- `brew install --cask pogrammers-dvorak`
+- `brew install pogrammers-dvorak`
 - Reboot after installing
 - Open Language input sources
 - Add Programmer Dvorak in the English section
 - Add Unicode Hex Input in the Other section
 
 ## Install Karabiner Elements
-- `brew install --cask karabiner-elements`
+- `brew install karabiner-elements`
 - Open Karabiner Elements and allow input monitoring when prompted
 - Select Simple Modifications tab
 - Add Keys in pc keyboards -> application to Modifier keys -> fn
@@ -47,12 +47,47 @@
 - Select Add Rule and enable Change shift + delete to forward delete
 - In the Misc tab, select Copy the current configuration to the system default configuration
 
+## Install Ligature + Nerd Font
+- `brew install font-jetbrains-mono-nerd-font`
+
 ## Install Iterm2
-- `brew install --cask iterm2`
+- `brew install iterm2`
 - Close terminal and open iterm2
+
+### Set Iterm2 color scheme
+- Open Settings -> Profiles -> Default -> colors -> Color Presets... -> Import...
+- Import color scheme from assets/iterm-themes
+- Change Font to JetBrains Mono NF
+- Select Use ligatures
+
+### Install Monokai Pro ZSH theme
+- Follow instructions from https://monokai.pro/zsh
+
+### Install Oh My Zsh
+- `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+
+### Configure Vim
+- Copy assets/vim/* to ~/.vim
+- `cp -R assets/vim/ ~/.vim`
+
+### Install Powerlevel10k
+- `brew install romkatv/powerlevel10k/powerlevel10k`
+- `echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc`
+- Note: if Cisco Umbrella is active without trusted root certificate, download and install MesloLGS fonts first, then select "no" to install the custom font in the p10k install wizard.
+- Restart Iterm2 and follow prompts in p10k wizard
+
+## Install LazyVim
+`brew install neovim`
+`git clone https://github.com/LazyVim/starter ~/.config/nvim`
+`nvim`
 
 ## Install Git
 `brew install git`
+- Copy assets/.gitconfig to ~
+- Edit ~/.gitconfig with username and email
+
+## Install Lazygit
+`brew install lazygit`
 
 ### SSH key for personal Github
 
@@ -116,25 +151,59 @@ Host *
 
 > If you have already cloned the repository, configure it to use the alias by navigating to the project directory and run: `git remote set-url origin {alias}:{user}/{repo}`
 
-## Install VS Code
-- `brew install --cask visual-studio-code`
-
-## Install Oh My Zsh
-- `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-
-## Install ChatGPT
-- `brew install --cask chatgpt`
+### Personal Access Token for shared components 
 
 ## Install Visual Studio Code
-- `brew install --cask visual-studio-code`
+- `brew install visual-studio-code`
+
+### Log into VS Code with GitHub
+- Select gear in bottom left
+- Select Turn on Settings Sync...
+
+## Install NVM
+- `brew install nvm`
+- Follow post-install instructions (add nvm working directory and configure zshrc)
+
+## Install ChatGPT
+- `brew install chatgpt`
+
+## Install Claude
+- `brew install claude`
 
 ## Install Firefox
-- `brew install --cask firefox`
+- `brew install firefox`
 
 ## Install Chrome
-- `brew install --cask chrome`
+- `brew install chrome`
+
+## Install Ksnip
+- `brew install ksnip`
+
+## Install Gimp
+- `brew install gimp`
 
 ## Install Wget
 - `brew install wget`
+
+## Others
+- `brew install cursor`
+- `npm i -g @anthropic-ai/claude-code`
+- `brew install zeplin`
+- `brew install vlc`
+- `brew install smplayer`
+- `brew install ffmpeg`
+- `brew install most`
+- `brew install openmtp`
+- `brew install appcleaner`
+- `brew install jubler`
+- `brew install mkvtoolnix`
+- `brew install the-unarchiver`
+- `brew install prusaslicer`
+- `brew install 4k-video-downloader`
+- `brew install upscayl`
+- `brew install spotify`
+- Skitch - no longer supported - copy on NAS
+- Spectacle - no longer supported - copy on NAS
+- Libation - 
 
 ## Cheat

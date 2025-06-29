@@ -1,7 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -73,11 +69,17 @@ ZSH_THEME="agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-syntax-highlighting
   zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
+source ~/.z-monokai
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# override zsh-syntax-highlighting defaults
+ZSH_HIGHLIGHT_STYLES[path]=
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=black,bold
+ZSH_HIGHLIGHT_STYLES[path_prefix]=
 
 # User configuration
 

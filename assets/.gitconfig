@@ -3,8 +3,6 @@
 # Please adapt and uncomment the following lines:
 	name = {name}
 	email = {email}
-[url "https://"]
-	insteadof = git://
 [credential]
 	helper = osxkeychain
 [diff]
