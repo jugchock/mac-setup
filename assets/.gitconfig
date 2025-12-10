@@ -3,17 +3,20 @@
 # Please adapt and uncomment the following lines:
 	name = {name}
 	email = {email}
-[credential]
-	helper = osxkeychain
-[diff]
-	tool = vimdiff
-[merge]
-	tool = vimdiff
-[difftool "vimdiff"]
-	cmd = /usr/bin/vimdiff $LOCAL $REMOTE
-[push]
-	default = current
+
 [color]
 	ui = true
 [core]
 	pager = less -Xr
+[credential]
+	helper = osxkeychain
+[diff]
+	tool = vimdiff
+[difftool "vimdiff"]
+	cmd = /usr/bin/vimdiff $LOCAL $REMOTE
+[merge]
+	tool = vimdiff
+[pull]
+	rebase = false
+[push]
+	default = current

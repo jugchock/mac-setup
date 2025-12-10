@@ -1,32 +1,20 @@
 # Mac Setup
 
-## Add Umbrella Root Cert
-- Open an asset from raw.githubusercontent.com in Chrome
-  - Example: https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/extravagant-style.png
-- Click the red warning icon to the left of the URL bar
-- Click "Connection is not secure"
-- Click "Certificate is invalid"
-- Open finder and navigate to a folder you want to save this cert in
-- Select Cisco Umbrella Root CA
-- Drag cert icon in left of popup into finder
-- Close 
-- Open copied cert
-- Change dropdown to system and select "Add"
-- Select system in left-hand menu
-- Double-click "Cisco Umbrella Root CA" in list of system certs
-- Expand "Trust" in the popup
-- Select "Always trust" and close popup
-- Enter password
+## Enable Dvorak keyboard
+- Open settings -> Keyboard -> Text Input -> Edit...
+- Add an input source (click the "+" button in the lower left)
+- Select Dvorak and click "Add"
 
 ## Install Homebrew
 - Follow instructions from https://brew.sh/
-- `/bin/bash -c "$(curl -fksSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-- Note: the "k" flag above is required because Cisco Umbrella causes a cert error without it
+- Copy the install command, it should look something like:
+- `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+  - Note: add the "k" flag to the command if install fails due to Cisco Umbrella cert errors
 - Make sure Homebrew directories are owned by you with write permissions: https://stackoverflow.com/questions/16432071/how-to-fix-homebrew-permissions
 - Follow instructions Homebrew prints to the console to add Homebrew to system path
 
 ## Install Programmer's Dvorak
-- `brew install pogrammers-dvorak`
+- `brew install pogrammer-dvorak`
 - Reboot after installing
 - Open Language input sources
 - Add Programmer Dvorak in the English section
@@ -176,14 +164,31 @@ Host *
 ## Install Chrome
 - `brew install chrome`
 
-## Install Ksnip
-- `brew install ksnip`
-
 ## Install Gimp
 - `brew install gimp`
 
 ## Install Wget
 - `brew install wget`
+
+## Install Python
+- `brew install pyenv`
+- update .zshrc
+   ```bash
+  # pyenv setup
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+  ```
+- Install latest python:
+  `pyenv install 3.12.3`
+  `pyenv global 3.12.3`
+- Ensure Pip is installed and updated
+  `python -m ensurepip --upgrade`
+  `python -m pip install --upgrade pip`
+- Install Virtualenv
+  `python -m pip install virtualenv`
+
 
 ## Others
 - `brew install cursor`
