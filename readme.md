@@ -1,5 +1,8 @@
 # Mac Setup
 
+## Switch to dark mode
+- Settings -> Appearance -> Dark
+
 ## Enable Dvorak keyboard
 - Open settings -> Keyboard -> Text Input -> Edit...
 - Add an input source (click the "+" button in the lower left)
@@ -18,64 +21,12 @@
 - Reboot after installing
 - Open Language input sources
 - Add Programmer Dvorak in the English section
-- Add Unicode Hex Input in the Other section
-
-## Install Karabiner Elements
-- `brew install karabiner-elements`
-- Open Karabiner Elements and allow input monitoring when prompted
-- Select Simple Modifications tab
-- Add Keys in pc keyboards -> application to Modifier keys -> fn
-- Add Modifier Keys -> caps_lock to Controls and Symbols -> escape
-- Add Keys in pc keyboards -> pause to Media controls -> eject
-- On function keys tab check Use all F1, F2, etc. keys as standard function keys
-- Select Complex Modifications tab
-- Select Add rule
-- Select Import more rules from the Internet
-- Select Backspace Enhancements from Key Specific section
-- Select Add Rule and enable Change shift + delete to forward delete
-- In the Misc tab, select Copy the current configuration to the system default configuration
-
-## Install Ligature + Nerd Font
-- `brew install font-jetbrains-mono-nerd-font`
-
-## Install Iterm2
-- `brew install iterm2`
-- Close terminal and open iterm2
-
-### Set Iterm2 color scheme
-- Open Settings -> Profiles -> Default -> colors -> Color Presets... -> Import...
-- Import color scheme from assets/iterm-themes
-- Change Font to JetBrains Mono NF
-- Select Use ligatures
-
-### Install Monokai Pro ZSH theme
-- Follow instructions from https://monokai.pro/zsh
-
-### Install Oh My Zsh
-- `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-
-### Configure Vim
-- Copy assets/vim/* to ~/.vim
-- `cp -R assets/vim/ ~/.vim`
-
-### Install Powerlevel10k
-- `brew install romkatv/powerlevel10k/powerlevel10k`
-- `echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc`
-- Note: if Cisco Umbrella is active without trusted root certificate, download and install MesloLGS fonts first, then select "no" to install the custom font in the p10k install wizard.
-- Restart Iterm2 and follow prompts in p10k wizard
-
-## Install LazyVim
-`brew install neovim`
-`git clone https://github.com/LazyVim/starter ~/.config/nvim`
-`nvim`
+- Add Unicode Hex Input in the Others section
 
 ## Install Git
 `brew install git`
 - Copy assets/.gitconfig to ~
 - Edit ~/.gitconfig with username and email
-
-## Install Lazygit
-`brew install lazygit`
 
 ### SSH key for personal Github
 
@@ -141,12 +92,70 @@ Host *
 
 ### Personal Access Token for shared components 
 
+## Clone this repo
+- Create ~/Projects
+- cd ~/Projects
+- copy clone command from repo
+  - Should be similar to `clone git@github.com:jugchock/mac-setup.git`
+
 ## Install Visual Studio Code
 - `brew install visual-studio-code`
 
 ### Log into VS Code with GitHub
 - Select gear in bottom left
 - Select Turn on Settings Sync...
+
+## Install Karabiner Elements
+- `brew install karabiner-elements`
+- Open Karabiner Elements and allow input monitoring when prompted
+- Select Simple Modifications tab
+- Add Keys in pc keyboards -> application to Modifier keys -> fn
+- Add Modifier Keys -> caps_lock to Controls and Symbols -> escape
+- Add Keys in pc keyboards -> pause to Media controls -> eject
+- On function keys tab check Use all F1, F2, etc. keys as standard function keys
+- Select Complex Modifications tab
+- Select Add rule
+- Select Import more rules from the Internet
+- Select Backspace Enhancements from Key Specific section
+- Select Add Rule and enable Change shift + delete to forward delete
+- In the Misc tab, select Copy the current configuration to the system default configuration
+
+## Install Ligature + Nerd Font
+- `brew install font-jetbrains-mono-nerd-font`
+
+## Install Iterm2
+- `brew install iterm2`
+- Close terminal and open iterm2
+
+### Set Iterm2 color scheme
+- Open Settings -> Profiles -> Default -> colors -> Color Presets... -> Import...
+- Import color scheme from assets/iterm-themes
+- Change Font to JetBrains Mono NF
+- Select Use ligatures
+
+### Install Monokai Pro ZSH theme
+- Follow instructions from https://monokai.pro/zsh
+
+### Install Oh My Zsh
+- `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+
+### Configure Vim
+- Copy assets/vim/* to ~/.vim
+- `cp -R assets/vim/ ~/.vim`
+
+### Install Powerlevel10k
+- `brew install romkatv/powerlevel10k/powerlevel10k`
+- `echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc`
+- Note: if Cisco Umbrella is active without trusted root certificate, download and install MesloLGS fonts first, then select "no" to install the custom font in the p10k install wizard.
+- Restart Iterm2 and follow prompts in p10k wizard
+
+## Install LazyVim
+`brew install neovim`
+`git clone https://github.com/LazyVim/starter ~/.config/nvim`
+`nvim`
+
+## Install Lazygit
+`brew install lazygit`
 
 ## Install NVM
 - `brew install nvm`
