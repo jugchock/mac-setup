@@ -13,13 +13,14 @@
 - Copy the install command, it should look something like:
 - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
   - Note: add the "k" flag to the command if install fails due to Cisco Umbrella cert errors
+- Open terminal app and paste and run command
 - Make sure Homebrew directories are owned by you with write permissions: https://stackoverflow.com/questions/16432071/how-to-fix-homebrew-permissions
 - Follow instructions Homebrew prints to the console to add Homebrew to system path
 
 ## Install Programmer's Dvorak
 - `brew install pogrammer-dvorak`
 - Reboot after installing
-- Open Language input sources
+- Open settings -> Keyboard -> Text Input -> Edit...
 - Add Programmer Dvorak in the English section
 - Add Unicode Hex Input in the Others section
 
@@ -46,52 +47,6 @@
 - Open github.com -> log in -> Settings -> SSH and GPG Keys -> New SSH key
 - Name the key and paste the copied value
 
-### SSH key for work Github
-
-#### Generate key
-`ssh-keygen -t ed25519 -C "{work_email}" -f ~/.ssh/github_work`
-
-#### Add to ssh-agent
-- Ensure SSH Agent is running
-- `eval "$(ssh-agent -s)"`
-- Add key to ssh-agent
-- `ssh-add --apple-use-keychain ~/.ssh/github_work`
-
-#### Add key to GitHub
-- Copy public key to clipboard
-- `cd ~/.ssh`
-- `pbcopy < ~/.ssh/github_work.pub`
-- Open github.com -> log in -> Settings -> SSH and GPG Keys -> New SSH key
-- Name the key and paste the copied value
-
-### Add keys to SSH config
-
-- Open SSH config for editing
-- `vim ~/.ssh/config`
-- Add the following lines:
-```bash
-Host github.com
-  Hostname github.com
-  IdentityFile ~/.ssh/github
-  PreferredAuthentications publickey
-  User git
-
-Host gh_work
-  Hostname github.com
-  IdentityFile ~/.ssh/github_work
-  PreferredAuthentications publickey
-  User git
-
-Host *
-  AddKeysToAgent yes
-```
-
-> When cloning a repository from a work repo, use gh_work instead of github.com.
-
-> If you have already cloned the repository, configure it to use the alias by navigating to the project directory and run: `git remote set-url origin {alias}:{user}/{repo}`
-
-### Personal Access Token for shared components 
-
 ## Clone this repo
 - Create ~/Projects
 - cd ~/Projects
@@ -104,20 +59,29 @@ Host *
 ### Log into VS Code with GitHub
 - Select gear in bottom left
 - Select Turn on Settings Sync...
+- Log in with GitHub
+
+## Install Firefox
+- `brew install firefox`
+- Keep "Keep Firefox in Dock" and "Set Firefox as default browser" checked
+- Uncheck "Import from previous browser"
+- Skip explore extensions step
+- Select "Sign up or sign in"
 
 ## Install Karabiner Elements
 - `brew install karabiner-elements`
 - Open Karabiner Elements and allow input monitoring when prompted
 - Select Simple Modifications tab
-- Add Keys in pc keyboards -> application to Modifier keys -> fn
-- Add Modifier Keys -> caps_lock to Controls and Symbols -> escape
-- Add Keys in pc keyboards -> pause to Media controls -> eject
+- Add "Keys in pc keyboards -> application" to "Modifier keys -> fn"
+- Add "Modifier Keys -> caps_lock" to "Controls and Symbols -> escape"
+- Add "Keys in pc keyboards -> pause" to "Media controls -> eject"
 - On function keys tab check Use all F1, F2, etc. keys as standard function keys
 - Select Complex Modifications tab
-- Select Add rule
-- Select Import more rules from the Internet
-- Select Backspace Enhancements from Key Specific section
-- Select Add Rule and enable Change shift + delete to forward delete
+- Select "Add rule"
+- Select "Import more rules from the Internet"
+- Search for "backspace"
+- Select "Backspace Enhancements"
+- Select Add Rule and enable "Map Shift + Backspace to Forward Delete"
 - In the Misc tab, select Copy the current configuration to the system default configuration
 
 ## Install Ligature + Nerd Font
@@ -129,8 +93,15 @@ Host *
 
 ### Set Iterm2 color scheme
 - Open Settings -> Profiles -> Default -> colors -> Color Presets... -> Import...
-- Import color scheme from assets/iterm-themes
-- Change Font to JetBrains Mono NF
+- Import Monokai_Pro and Monokai_Pro_Light color themes from assets/iterm-themes
+- Select "Editing: -> Light Mode"
+- Select "Color Preset: -> Color Presets... -> Monokai_Pro_Light"
+- Select "Update Light Mode Only"
+- Select "Editing: -> Dark Mode"
+- Select "Color Preset: -> Color Presets... -> Monokai_Pro"
+- Select "Update Dark Mode Only"
+- Navigate to Text tab
+- Change Font to "JetBrainsMonoNL Nerd Font Mono"
 - Select Use ligatures
 
 ### Install Monokai Pro ZSH theme
@@ -146,7 +117,7 @@ Host *
 ### Install Powerlevel10k
 - `brew install romkatv/powerlevel10k/powerlevel10k`
 - `echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc`
-- Note: if Cisco Umbrella is active without trusted root certificate, download and install MesloLGS fonts first, then select "no" to install the custom font in the p10k install wizard.
+- Choose not to install MesloGS font, use the current (Jetbrains Nerd Font)
 - Restart Iterm2 and follow prompts in p10k wizard
 
 ## Install LazyVim
@@ -167,11 +138,8 @@ Host *
 ## Install Claude
 - `brew install claude`
 
-## Install Firefox
-- `brew install firefox`
-
 ## Install Chrome
-- `brew install chrome`
+- `brew install google-chrome`
 
 ## Install Gimp
 - `brew install gimp`
