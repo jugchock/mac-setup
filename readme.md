@@ -119,6 +119,8 @@
 - `echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc`
 - Choose not to install MesloGS font, use the current (Jetbrains Nerd Font)
 - Restart Iterm2 and follow prompts in p10k wizard
+- Edit ~/.p10k.zsh
+  - Change 4 to 5 for POWERLEVEL9K_DIR_BACKGROUND
 
 ## Install LazyVim
 `brew install neovim`

@@ -1,13 +1,25 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-export LESS="-X"
+# Homebrew environment setup
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Pyenv setup
+eval "$(pyenv init -)"
+
+# Oh My Zsh
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -67,14 +79,30 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  zsh-autosuggestions
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.z-monokai
+
+# Color & pager settings (set after OMZ to avoid overrides)
+export PAGER=less
+export LESS='-RFX'
+export MANPAGER="sh -c 'col -bx | bat -l man -p' sh"
+export BAT_PAGER='less -RFX'
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# direnv
+eval "$(direnv hook zsh)"
+
+# Theme
+# source ~/.z-monokai
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # override zsh-syntax-highlighting defaults
 ZSH_HIGHLIGHT_STYLES[path]=
@@ -85,68 +113,67 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
-
-# Git Branch Autocompletion
-# https://dev.to/oliverspryn/adding-git-completion-to-zsh-26id
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-fpath=(~/.zsh $fpath)
-
-autoload -Uz compinit && compinit
-
-###########
-# Aliases
-###########
-
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias profile="cat ~/.zshrc|more"
-alias edit-profile="vim ~/.zshrc"
-alias load-profile="exec zsh"
+alias edit-profile="nvim ~/.zshrc"
+alias load-profile="source ~/.zshrc"
 alias ll="ls -lhA|more"
 alias gp="git pull --rebase"
 alias gb="git checkout -b "
 alias gc="git commit -m "
 alias gca="git commit -a -m "
 alias git-prune="git fetch -p"
-alias git-list-merged="git branch --merged master | grep -v -e \"^\s\+master$\" -e \"^\s\+feature\/.\+\" -e \"^\s\+release\/v[0-9.]\+$\" -e \"^\s\+rel$\" -e \"^\s\+dev$\""
-alias git-del-merged="git-list-merged | xargs -n 1 git branch -d"
-alias git-list-merged-remote="for branch in \`git branch -r --merged | grep -v HEAD\`; do echo -e \`git show --format=\"%ci %cr %an\" \$branch | head -n 1\` \\\t\$branch; done | sort -r"
-alias git-del-remote="git branch -r --merged master | grep -v master | sed 's/origin\///' | xargs -n 1 git push --delete origin"
+alias git-prune-gone="git fetch --prune && git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -D"
+alias git-prune-mine="git branch --list 'cchock/RC-*' | xargs git branch -D"
 alias prov="./Portable/Build/Configure.sh ORV Dev"
 alias count-lines="( find -E . -regex '.*\.(ts|scss|html)$' -print0 | xargs -0 cat ) | sed '/^\s*$/d;/^\s*\//d;/^\s*<\!--/d' | wc -l"
-alias count-ts="( find -E . -regex '.*\.ts$' -print0 | xargs -0 cat ) | sed '/^\s*$/d;/^\s*\//d;/^\s*<\!--/d' | wc –l"
-alias count-css="( find -E . -regex '.*\.scss$' -print0 | xargs -0 cat ) | sed '/^\s*$/d;/^\s*\//d;/^\s*<\!--/d' | wc –l"
-alias count-html="( find -E . -regex '.*\.html$' -print0 | xargs -0 cat ) | sed '/^\s*$/d;/^\s*\//d;/^\s*<\!--/d' | wc –l"
+alias count-ts="( find -E . -regex '.*\.ts$' -print0 | xargs -0 cat ) | sed '/^\s*$/d;/^\s*\//d;/^\s*<\!--/d' | wc -l"
+alias count-css="( find -E . -regex '.*\.scss$' -print0 | xargs -0 cat ) | sed '/^\s*$/d;/^\s*\//d;/^\s*<\!--/d' | wc -l"
+alias count-html="( find -E . -regex '.*\.html$' -print0 | xargs -0 cat ) | sed '/^\s*$/d;/^\s*\//d;/^\s*<\!--/d' | wc -l"
 alias flatten="find . -mindepth 2 -type f -exec mv -t . -i '{}' +"
 alias ip="curl ifconfig.me"
-# alias aws="docker run --rm -it -v ~/.aws:/root/.aws amazon/aws-cli"
-# alias base64="echo \"echo -n {input} | openssl base64 | pbcopy\""
 
-###########
-# NVM
-###########
+# GitHub CLI auto-account switching
+# Automatically switches to work account for Polaris repos, personal account otherwise
+function gh() {
+  local target_account="jugchock"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  # Check if we're in a git repo and it's a Polaris repo
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    local remote_url=$(git config --get remote.origin.url 2>/dev/null)
+    if [[ "$remote_url" == *"Polaris"* || "$remote_url" == *"gh_polaris"* ]]; then
+      target_account="cchock_polaris"
+    fi
+  fi
 
-###########
-# Homebrew
-###########
+  # Get current active account
+  local current_account=$(command gh auth status --active 2>&1 | grep "Logged in to github.com account" | awk '{print $6}')
 
-export HOMEBREW_NO_GITHUB_API=1
+  # Switch if needed (silently)
+  if [[ "$current_account" != "$target_account" ]]; then
+    command gh auth switch --user "$target_account" > /dev/null 2>&1
+  fi
+
+  # Run the actual gh command
+  command gh "$@"
+}

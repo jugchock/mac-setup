@@ -1,13 +1,11 @@
-# This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
 	name = {name}
 	email = {email}
-
 [color]
 	ui = true
 [core]
-	pager = less -Xr
+	pager = less -RFX
+	excludesFile = ~/.gitignore
 [credential]
 	helper = osxkeychain
 [diff]
